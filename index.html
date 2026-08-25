@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#090d18" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Quest Log UVM</title>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">JARVIS · UVM SCHOOL OS</p>
+          <h1>Quest Log</h1>
+          <p class="muted">Tu carga académica convertida en misiones ejecutables.</p>
+        </div>
+        <div class="top-actions"><button id="addTaskTop" class="primary-button" type="button">+ Nueva misión</button><button id="resetButton" class="ghost-button" type="button">Restablecer demo</button></div>
+      </header>
+
+      <section class="jarvis-briefing" aria-label="Briefing de Jarvis">
+        <div class="scanline"></div>
+        <div class="mascot-wrap"><img src="./assets/jarvis-mascot.png" alt="Mascota Jarvis" /></div>
+        <div class="briefing-copy"><p class="eyebrow">ASISTENTE ACTIVO · JARVIS CORE</p><h2 id="jarvisTitle">Buenos días, comandante.</h2><p id="jarvisMessage">Estoy listo para convertir tu siguiente acción en progreso real.</p><button id="focusButton" class="primary-button" type="button">Iniciar misión principal</button></div>
+        <div class="briefing-readout"><span>CORE STATUS</span><strong>ONLINE</strong><small id="briefingCount">0 pendientes detectados</small></div>
+      </section>
+
+      <section class="quick-links" aria-label="Accesos rápidos">
+        <div class="section-head"><div><p class="eyebrow">LANZADORES</p><h2>Entrar a mis plataformas</h2></div></div>
+        <div class="link-grid" id="quickLinks"></div>
+      </section>
+
+      <section class="hud" aria-label="Estado del jugador">
+        <div class="hud-card"><span>NIVEL</span><strong id="levelValue">1</strong></div>
+        <div class="hud-card hud-wide"><span>XP TOTAL</span><strong id="xpValue">0</strong><div class="progress"><i id="xpBar"></i></div><small id="xpNext">0 / 100 XP</small></div>
+        <div class="hud-card"><span>RACHA</span><strong id="streakValue">0 días</strong></div>
+        <div class="hud-card"><span>HP ACADÉMICO</span><strong id="hpValue">100</strong></div>
+      </section>
+
+      <section class="section-head"><div><p class="eyebrow">CENTRO DE ACCIÓN</p><h2>Qué hacer ahora</h2></div><span id="questCount" class="pill">0 pendientes</span></section>
+      <section id="questList" class="quest-list" aria-live="polite"></section>
+
+      <section id="taskPanel" class="task-panel" hidden>
+        <div class="section-head"><div><p class="eyebrow">CAPTURA RÁPIDA</p><h2>Añadir misión</h2></div><button id="closeTask" class="ghost-button" type="button">Cerrar</button></div>
+        <form id="taskForm" class="task-form">
+          <label>Tarea<input name="title" required maxlength="120" placeholder="Ej. Entregar actividad de redes" /></label>
+          <label>Materia<input name="subject" required maxlength="60" placeholder="Ej. Redes" /></label>
+          <label>Plataforma<select name="platform"><option value="blackboard">Blackboard</option><option value="teams">Teams</option><option value="cisco">Cisco Academy</option><option value="cambridge">Cambridge One</option><option value="todo">Microsoft To Do</option><option value="personal">Personal</option></select></label>
+          <label>Fecha límite<input name="due" type="date" /></label>
+          <label>Enlace directo<input name="url" type="url" placeholder="https://..." /></label>
+          <button class="primary-button" type="submit">Guardar misión</button>
+        </form>
+      </section>
+
+      <section class="section-head"><div><p class="eyebrow">CAMPAÑA</p><h2>Por materia</h2></div></section>
+      <section id="subjectStats" class="stats-grid"></section>
+    </main>
+    <script src="./app.js" defer></script>
+    <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');</script>
+  </body>
+</html>
